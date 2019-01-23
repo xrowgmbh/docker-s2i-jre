@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -e
+
+APP_TARGET=${APP_TARGET:-target}
+
+function fancy_log {
+    echo "---> $@"
+}
+
+fancy_log "Starting Spring Boot application"
+fancy_log "APP_TARGET = $APP_TARGET"
+
+if [[ ! -z $JAVA_OPTS ]]
+then
+    fancy_log "JAVA_OPTS = $JAVA_OPTS"
+fi
+
+fancy_log "Searching for a valid JAR file (in $PWD/$APP_TARGET)"
+
+EXECUTABLE=$(find $APP_TARGET -maxdepth 2 -name "*.jar")
+if [[ -z $EXECUTABLE ]]
+then
+   fancy_log "ERROR: No executeable JAR file found"
+   exit 1
+fi
+
+fancy_log "Found $PWD/$EXECUTABLE"
+fancy_log "Running application from standalone jar"
+
+exec java $JAVA_OPTS -jar $EXECUTABLE
