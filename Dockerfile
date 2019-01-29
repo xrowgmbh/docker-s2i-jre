@@ -8,6 +8,7 @@ ENV STI_SCRIPTS_PATH=/usr/libexec/s2i \
 LABEL io.k8s.description="Java runtime (JRE) image" \
       io.k8s.display-name="s2i-jre" \
       io.openshift.s2i.scripts-url="image:///usr/libexec/s2i" \
+      io.openshift.s2i.assemble-input-files="/opt/app-root/src/target" \
       io.openshift.tags="java,springboot"
 
 WORKDIR ${HOME}
