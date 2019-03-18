@@ -18,7 +18,7 @@ RUN useradd -u 1001 -r -g 0 -d ${HOME} -s /sbin/nologin -c "Default Application 
 
 ARG JAVA_VERSION="1.8.0"
 
-RUN yum install -y java-$JAVA_VERSION-openjdk-headless
+RUN yum install -y java-$JAVA_VERSION-openjdk
 
 COPY s2i/bin $STI_SCRIPTS_PATH
 
